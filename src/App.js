@@ -1,25 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
+/** 
+ *    React States:
+ *    1. Component (Function App - HTML, CSS, JS isolado)
+ *    2. Properties (<Header title="Dashboard">)
+ *    3. State (To update vars use "useState")
+ **/ 
+
+import React, { useEffect, useState } from 'react';
+import api from './services/api';
+
+import './global.css';
 import './App.css';
+import './Sidebar.css';
+import './Main.css';
+
+import VolunteerItem from './components/VolunteerItem';
+import VolunteerForm from './components/VolunteerForm';
 
 function App() {
+
+  const [volunteers, setVolunteers] = useState([]);
+
+  // List Volunteers (useEffect)
+  useEffect(() => {
+    // Function
+    async function loadVolunteers() {
+      const response = await api.get('/volunteers');
+      setVolunteers(response.data);
+    }
+    // Execute function
+    loadVolunteers();
+
+  }, []);
+
+
+  // Submit
+  async function handleAddVolunteer(data){
+
+    const response = await api.post('/volunteers', data)
+
+    // Add to previous array (volunteers) the new one created
+    setVolunteers([...volunteers, response.data]);
+
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div id="app-header">
+        <h3>¡Bienvenido a Voluntarios!</h3>
+      </div>
+      <div id="app">
+        <aside>
+          <strong>¡Regístrate!</strong>
+          <VolunteerForm onSubmit={handleAddVolunteer} />
+        </aside>
+        <main>
+          <ul>
+            {volunteers.map(volunteer => (
+              <VolunteerItem key={volunteer._id} volunteer={volunteer} />
+            ))}
+          </ul>
+        </main>
+      </div>
+    </>
   );
 }
 
