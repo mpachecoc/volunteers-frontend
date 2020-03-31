@@ -7,7 +7,7 @@ function VolunteerForm({ onSubmit }) {
     // Create States for all vars
     const [instagram_username, setInstagramUsername] = useState('');
     const [name, setName] = useState('');
-    const [allowed_day, setAllowedDay] = useState('');
+    const [allowed_day, setAllowedDay] = useState('Lunes');
     const [help_desc, setHelpDesc] = useState('');
     const [contact, setContact] = useState('');
 

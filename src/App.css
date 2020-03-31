@@ -25,6 +25,11 @@
     margin-left: 30px;
 }
 
+#app p.list-title {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 1000px) {
     #app {
         flex-direction: column;

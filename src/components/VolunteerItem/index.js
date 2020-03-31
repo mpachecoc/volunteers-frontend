@@ -16,7 +16,9 @@ function VolunteerItem(props) {
             </div>
             </header>
             <p>- {volunteer.help_desc}</p>
-            <a href={`https://www.instagram.com/${volunteer.instagram_username}/`}>Ver Perfil de Instagram</a>
+            {volunteer.instagram_username &&
+                <a href={`https://www.instagram.com/${volunteer.instagram_username}/`}>Ver Perfil de Instagram</a>
+            }
         </li>
     );
 }

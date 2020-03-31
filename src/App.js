@@ -55,6 +55,7 @@ function App() {
           <VolunteerForm onSubmit={handleAddVolunteer} />
         </aside>
         <main>
+          <p className="list-title">Últimos registrados...</p>
           <ul>
             {volunteers.map(volunteer => (
               <VolunteerItem key={volunteer._id} volunteer={volunteer} />
