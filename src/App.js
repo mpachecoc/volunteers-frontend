@@ -1,10 +1,3 @@
-/** 
- *    React States:
- *    1. Component (Function App - HTML, CSS, JS isolado)
- *    2. Properties (<Header title="Dashboard">)
- *    3. State (To update vars use "useState")
- **/ 
-
 import React, { useEffect, useState } from 'react';
 import api from './services/api';
 
